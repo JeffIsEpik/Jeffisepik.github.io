@@ -760,30 +760,30 @@
 <body>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css" />
         <div id="main" data-locomotive-scroll>
-                <header>
-                    <nav>
-                        <img src="/assets/yaa.png" alt="nav logo" class="nav-logo" />
-                        <div class="hamburger" id="hamburger">&#9776;</div>
-                        <div class="menuitem">
-                            <a href="">Home</a>
-                            <a href="/works">Works</a>
-                            <a href="/contact/">Contact</a>
-                            <a href="https://instagram.com/y0onus/?igshid=ZDdkNTZiNTM%3D">Instagram</a>
-                        </div>
-                    </nav>
-                </header>
-
-                <!-- Overlay for Mobile Nav -->
-                <div class="overlay" id="overlay">
-                    <div class="close-btn" id="close-btn">&times;</div>
+            <header>
+                <nav>
                     <img src="/assets/yaa.png" alt="nav logo" class="nav-logo" />
-                    <div class="overlay-links">
+                    <div class="hamburger" id="hamburger">&#9776;</div>
+                    <div class="menuitem">
                         <a href="">Home</a>
                         <a href="/works">Works</a>
                         <a href="/contact/">Contact</a>
-                        <a href="https://instagram.com/y0onus/?igshid=ZDdkNTZiNTM%3D">Instagram</a>
+                        <a target="_blank" href="https://instagram.com/y0onus/?igshid=ZDdkNTZiNTM%3D">Instagram</a>
                     </div>
+                </nav>
+            </header>
+
+            <!-- Overlay for Mobile Nav -->
+            <div class="overlay" id="overlay">
+                <div class="close-btn" id="close-btn">&times;</div>
+                <img src="/assets/yaa.png" alt="nav logo" class="nav-logo" />
+                <div class="overlay-links">
+                    <a href="">Home</a>
+                    <a href="/works">Works</a>
+                    <a href="/contact/">Contact</a>
+                    <a target="_blank" href="https://instagram.com/y0onus/?igshid=ZDdkNTZiNTM%3D">Instagram</a>
                 </div>
+            </div>
 
                 <main class="container">
                     <section class="section_1">
@@ -797,13 +797,13 @@
                     </section>
 
                     <section class="section_2 py-8">
-                        <h1>What I Do</h1>
+                        <h1>About me</h1>
                         <div class="section_detail pt-5">
-                            <h3 class="section_2--left">Looking for a bold logo that sticks and a creative direction that breaks the mold? That’s where I come in.</h3>
+                            <h3 class="section_2--left">Striking visuals, real moments, and stories told through my lens. Let’s capture something unique.</h3>
                             <div class="section_2--right">
-                                <p>As a designer, I blend typography, logo design, and strategy to build brands that leave a lasting impact. From branding and identity to web design and creative strategy, I turn your vision into a visual identity that’s uniquely yours—capturing the essence of your brand.
+                                <p>As a designer and photographer, I blend bold visuals, layered compositions, and creative strategy to bring ideas to life. From graphic design to web development to capturing striking moments through my lens, I create unique identities that stand out—combining art, code, and storytelling to make a lasting impact.
                                 </p>
-                                <button class="btn"><a href="https://instagram.com/y0onus/?igshid=ZDdkNTZiNTM%3D" class="a">Instagram</a></button>
+                                <button class="btn"><a target="_blank" href="https://instagram.com/y0onus/?igshid=ZDdkNTZiNTM%3D" class="a">Instagram</a></button>
                             </div>
                         </div>
                             
@@ -812,15 +812,17 @@
                     <section class="section_3 py-8">
                         <div class="container">
                             <div class="bento-grid">
-                                <div class="bento-box large" style="background-image: url('/lossyassets/bannnner.png');" data-src="/assets/bannnner.png">
-                                    <span class="work-text">Work</span>
-                                </div>
-                                <div class="bento-box small" style="background-image: url('/lossyassets/bannnner.png');" data-src="/assets/bannnner.png">
-                                    <span class="work-text">Work</span>
-                                </div>
-                                <div class="bento-box small" style="background-image: url('/lossyassets/bannnner.png');" data-src="/assets/bannnner.png">
-                                    <span class="work-text">Work</span>
-                                </div>
+                                <a href="/works/Weather/" class="bento-box large" style="background-image: url('https://github.com/JeffIsEpik/Jeffisepik.github.io/blob/main/lossyassets/Weatherapp5.png?raw=true');" data-src="https://github.com/JeffIsEpik/Jeffisepik.github.io/blob/main/assets/Weatherapp5.png?raw=true">
+                                    <span class="work-text">Weather</span>
+                                </a>
+
+                                <a href="/works/futboalha/" class="bento-box small" style="background-image: url('/lossyassets/futbul.png');" data-src="/Banners/futbul.png">
+                                    <span class="work-text">Futboalha</span>
+                                </a>
+                
+                                <a href="/works/photos/" class="bento-box small" style="background-image: url('https://github.com/JeffIsEpik/Jeffisepik.github.io/blob/main/lossyassets/photo3.jpg?raw=true');" data-src="https://github.com/JeffIsEpik/Jeffisepik.github.io/blob/main/assets/photo3.jpg?raw=true">
+                                    <span class="work-text">Photography</span>
+                                </a>
                             </div>
                         </div>
                     </section>
