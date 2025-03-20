@@ -14,6 +14,9 @@
                         overflow-y: scroll;
                 }
 
+.bento-box.loaded {
+    filter: none; /* Remove blur once the image is loaded */
+}
                 header {
                         height: 80px;
                         width: 100vw;
@@ -621,17 +624,32 @@
                 }
 
                 /* Responsive adjustments */
-                @media (max-width: 768px) {
-                    .bento-grid {
-                        grid-template-columns: 1fr; /* Stack boxes on smaller screens */
-                        grid-template-rows: auto;
-                    }
+              /* Mobile styles */
+@media (max-width: 768px) {
+    .bento-grid {
+        grid-template-columns: 1fr; /* Stack boxes on smaller screens */
+        grid-template-rows: auto;
+        gap: 1rem; /* Reduce gap for better spacing on mobile */
+        padding-inline: 0; /* Remove padding to align to edges */
+        margin-inline: 0; /* Remove margin to align to edges */
+        width: 100%; /* Ensure the grid takes full width */
+    }
 
-                    .bento-box.large,
-                    .bento-box.small {
-                        height: 300px; /* Uniform height for all boxes on smaller screens */
-                    }
-                }
+    .bento-box.large,
+    .bento-box.small {
+        height: 300px; /* Uniform height for all boxes on smaller screens */
+        width: 100%; /* Ensure boxes take full width */
+    }
+
+    .container {
+        width: 100%; /* Ensure the container takes full width */
+        padding-inline: 0; /* Remove padding to align to edges */
+    }
+
+    footer .container {
+        padding-inline: 1rem; /* Add padding back to footer for better readability */
+    }
+}
              
                 
 
@@ -749,7 +767,7 @@
                         <div class="menuitem">
                             <a href="">Home</a>
                             <a href="/works">Works</a>
-                            <a href="mailto:zyxstudio@proton.me">Contact</a>
+                            <a href="/contact/">Contact</a>
                             <a href="https://instagram.com/y0onus/?igshid=ZDdkNTZiNTM%3D">Instagram</a>
                         </div>
                     </nav>
@@ -762,7 +780,7 @@
                     <div class="overlay-links">
                         <a href="">Home</a>
                         <a href="/works">Works</a>
-                        <a href="mailto:zyxstudio@proton.me">Contact</a>
+                        <a href="/contact/">Contact</a>
                         <a href="https://instagram.com/y0onus/?igshid=ZDdkNTZiNTM%3D">Instagram</a>
                     </div>
                 </div>
@@ -791,23 +809,21 @@
                             
                     </section>
 
-                        <section class="section_3 py-8">
-                            <div class="container">
-                                <div class="bento-grid">
-                                    <div class="bento-box large" style="background-image: url('https://github.com/Yoonus4040/Datebase/blob/main/JeffIsEpik-Img-1.2/JEFF%20WITH%20A%20PEARL%20EARRING.png?raw=true');">
-                                        <span class="work-text">Work</span>
-                                    </div>
-                                    <div class="bento-box small" style="background-image: url('bannnner.png');">
-                                        <span class="work-text">Work</span>
-
-                                    </div>
-                                    <div class="bento-box small" style="background-image: url('bannnner.png');">
-                                        <span class="work-text">Work</span>
-
-                                    </div>
+                    <section class="section_3 py-8">
+                        <div class="container">
+                            <div class="bento-grid">
+                                <div class="bento-box large" style="background-image: url('/lossyassets/bannnner.png');" data-src="/assets/bannnner.png">
+                                    <span class="work-text">Work</span>
+                                </div>
+                                <div class="bento-box small" style="background-image: url('/lossyassets/bannnner.png');" data-src="/assets/bannnner.png">
+                                    <span class="work-text">Work</span>
+                                </div>
+                                <div class="bento-box small" style="background-image: url('/lossyassets/bannnner.png');" data-src="/assets/bannnner.png">
+                                    <span class="work-text">Work</span>
                                 </div>
                             </div>
-                        </section>
+                        </div>
+                    </section>
                 </main>
 
                 <footer class="container">
@@ -827,96 +843,62 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
         <script>
-            // Initialize Locomotive Scroll
-            const locomotiveScrollTrigger = () => {
-                gsap.registerPlugin(ScrollTrigger);
+        // Initialize Locomotive Scroll
+        const initializeLocomotiveScroll = () => {
+            gsap.registerPlugin(ScrollTrigger);
 
-                const locoScroll = new LocomotiveScroll({
-                    el: document.querySelector("[data-locomotive-scroll]"),
-                    smooth: true,
-                });
+            const locoScroll = new LocomotiveScroll({
+                el: document.querySelector("[data-locomotive-scroll]"),
+                smooth: true,
+            });
 
-                locoScroll.on("scroll", ScrollTrigger.update);
+            locoScroll.on("scroll", ScrollTrigger.update);
 
-                ScrollTrigger.scrollerProxy("[data-locomotive-scroll]", {
-                    scrollTop(value) {
-                        return arguments.length
-                            ? locoScroll.scrollTo(value, 0, 0)
-                            : locoScroll.scroll.instance.scroll.y;
-                    },
-                    getBoundingClientRect() {
-                        return {
-                            top: 0,
-                            left: 0,
-                            width: window.innerWidth,
-                            height: window.innerHeight,
-                        };
-                    },
-                    pinType: document.querySelector("[data-locomotive-scroll]").style.transform
-                        ? "transform"
-                        : "fixed",
-                });
-
-                ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
-                ScrollTrigger.refresh();
-            };
-
-            locomotiveScrollTrigger();
-
-            // Custom Cursor Animation
-            const customCursor = () => {
-                const cursor = document.querySelector(".cursor");
-                if (cursor) {
-                    window.addEventListener("mousemove", (e) => {
-                        const posX = e.clientX;
-                        const posY = e.clientY;
-                        cursor.style.left = `${posX}px`;
-                        cursor.style.top = `${posY}px`;
-                        cursor.style.opacity = 1;
-                    });
-                    window.addEventListener("mouseout", () => {
-                        cursor.style.opacity = 0;
-                    });
-                }
-            };
-
-            customCursor();
-
-            // GSAP Animations
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: ".section_1 h1",
-                    scroller: "[data-locomotive-scroll]",
-                    start: "top 15%",
-                    end: "top 0%",
-                    scrub: 3,
+            ScrollTrigger.scrollerProxy("[data-locomotive-scroll]", {
+                scrollTop(value) {
+                    return arguments.length
+                        ? locoScroll.scrollTo(value, 0, 0)
+                        : locoScroll.scroll.instance.scroll.y;
                 },
+                getBoundingClientRect() {
+                    return {
+                        top: 0,
+                        left: 0,
+                        width: window.innerWidth,
+                        height: window.innerHeight,
+                    };
+                },
+                pinType: document.querySelector("[data-locomotive-scroll]").style.transform
+                    ? "transform"
+                    : "fixed",
             });
 
-            tl.to(".section_1 h1:nth-child(1)", { x: -100 }, "anim");
-            tl.to(".section_1 h1:nth-child(2)", { x: 100 }, "anim");
+            ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
+            ScrollTrigger.refresh();
+        };
 
+        // Check screen width and initialize Locomotive Scroll only for desktop
+        if (window.innerWidth > 768) {
+            initializeLocomotiveScroll();
+        }
 
-            // Smooth Scroll to Sections
-            document.addEventListener("DOMContentLoaded", function () {
-                const sections = document.querySelectorAll("section");
-                window.addEventListener("scroll", function () {
-                    let currentSection = null;
-                    sections.forEach((section) => {
-                        const rect = section.getBoundingClientRect();
-                        if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-                            currentSection = section;
-                        }
-                    });
-                    if (currentSection) {
-                        currentSection.scrollIntoView({ behavior: "smooth" });
-                    }
-                });
+        // Lazy Load Images
+        document.addEventListener("DOMContentLoaded", function () {
+            const bentoBoxes = document.querySelectorAll('.bento-box');
+
+            bentoBoxes.forEach(bentoBox => {
+                const highResImage = new Image();
+                highResImage.src = bentoBox.getAttribute('data-src');
+
+                highResImage.onload = () => {
+                    bentoBox.style.backgroundImage = `url('${highResImage.src}')`;
+                    bentoBox.classList.add('loaded'); // Remove blur effect
+                };
             });
-        </script>
+        });
+</script>
 
          <script>
-                // Toggle Mobile Nav
                 const hamburger = document.getElementById("hamburger");
                 const overlay = document.getElementById("overlay");
                 const closeBtn = document.getElementById("close-btn");
@@ -929,7 +911,6 @@
                     overlay.classList.remove("active");
                 });
 
-                // Close overlay when clicking outside
                 overlay.addEventListener("click", (e) => {
                     if (e.target === overlay) {
                         overlay.classList.remove("active");
