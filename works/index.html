@@ -578,7 +578,7 @@
                 grid-template-columns: repeat(3, 1fr); /* 3 columns for the bento boxes */
                 gap: 2rem; /* Space between boxes */
                 margin-inline: auto; /* Center the grid */
-                max-width: 1400px; /* Limit the width of the grid */
+              
                 width: 100%; /* Ensure the grid takes full width */
             }
 
@@ -643,17 +643,26 @@
                 grid-column: span 3; /* Span all 3 columns */
                 height: 450px; /* Same height as other bento boxes */
             }
+            
 
             @media (max-width: 768px) {
-                .works-grid {
-                    grid-template-columns: 1fr; /* Stack boxes on smaller screens */
-                    padding-inline: 1rem; /* Add padding for smaller screens */
-                }
+    .works-grid {
+        grid-template-columns: 1fr; /* Stack boxes on smaller screens */
+        padding-inline: 0; /* Remove horizontal padding to touch edges */
+        margin-inline: 0; /* Remove horizontal margins */
+        width: 100%; /* Ensure the grid takes full width */
+    }
 
-                .first-bento {
-                    grid-column: span 1; /* Span only 1 column on smaller screens */
-                }
-            }
+    .bento-box {
+        border-radius: 0; /* Remove rounded corners for full-width effect */
+        margin-inline: 0; /* Remove horizontal margins */
+        width: 100%; /* Ensure the box takes full width */
+    }
+
+    .first-bento {
+        grid-column: span 1; /* Span only 1 column on smaller screens */
+    }
+}
             .bento-box {
                 position: relative;
                 background-size: cover;
@@ -667,127 +676,133 @@
             .bento-box.loaded {
                 filter: none; /* Remove blur once the image is loaded */
             }
+            .nav-logo {
+        height: 22px; /* Keep the current size */
+        width: auto; /* Maintain aspect ratio */
+    }
 
-                    .nav-logo {
-                        height: 22px; /* Keep the current size */
-                        width: auto; /* Maintain aspect ratio */
-                    }
+    .hamburger {
+        display: none; /* Hidden by default */
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: #F6F3F7;
+    }
 
-                    .hamburger {
-                        display: none; /* Hidden by default */
-                        cursor: pointer;
-                        font-size: 1.5rem;
-                        color: #F6F3F7;
-                    }
+    .menuitem {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
 
-                    .menuitem {
-                        display: flex;
-                        align-items: center;
-                        gap: 2rem;
-                    }
+    /* Mobile styles */
+    @media (max-width: 768px) {
+        .hamburger {
+            display: block; /* Show hamburger on mobile */
+        }
 
-                    /* Mobile styles */
-                    @media (max-width: 768px) {
-                        .hamburger {
-                            display: block; /* Show hamburger on mobile */
-                        }
+        .menuitem {
+            display: none !important; /* Hide regular nav on mobile */
+        }
+    }
 
-                        .menuitem {
-                            display: none !important; /* Hide regular nav on mobile */
-                        }
-                    }
+    /* Overlay Styles */
+    .overlay {
+        display: none; /* Hidden by default */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--clr-black);
+        z-index: 1000;
+        flex-direction: column;
+        justify-content: flex-start; /* Align content to the top */
+        align-items: flex-start; /* Align content to the left */
+        padding: 1.5rem; /* Add padding for spacing */
+    }
 
-                    /* Overlay Styles */
-                    .overlay {
-                        display: none; /* Hidden by default */
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background-color: var(--clr-black);
-                        z-index: 1000;
-                        flex-direction: column;
-                        justify-content: flex-start; /* Align content to the top */
-                        align-items: flex-start; /* Align content to the left */
-                        padding: 2rem; /* Add padding for spacing */
-                    }
+    .overlay.active {
+        display: flex; /* Show overlay when active */
+    }
 
-                    .overlay.active {
-                        display: flex; /* Show overlay when active */
-                    }
+    .overlay .close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: 2rem;
+        color: #F6F3F7;
+        cursor: pointer;
+    }
 
-                    .overlay .close-btn {
-                        position: absolute;
-                        top: 1rem;
-                        right: 1rem;
-                        font-size: 2rem;
-                        color: #F6F3F7;
-                        cursor: pointer;
-                    }
+    .overlay .nav-logo {
+        margin-bottom: 2rem; /* Space between logo and links */
+    }
 
-                    .overlay .nav-logo {
-                        margin-bottom: 2rem; /* Space between logo and links */
-                    }
+    .overlay .overlay-links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Align links to the left */
+        gap: 1.5rem; /* Space between links */
+    }
 
-                    .overlay .overlay-links {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-start; /* Align links to the left */
-                        gap: 1.5rem; /* Space between links */
-                    }
+    .overlay .overlay-links a {
+        font-size: 2.5rem;
+        color: #F6F3F7;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
 
-                    .overlay .overlay-links a {
-                        font-size: 2.5rem;
-                        color: #F6F3F7;
-                        text-decoration: none;
-                        transition: color 0.3s ease;
-                    }
+    .overlay .overlay-links a:hover {
+        color: #ffffff;
+    }
 
-                    .overlay .overlay-links a:hover {
-                        color: #ffffff;
-                    }
+    /* Mobile styles */
+    @media (max-width: 768px) {
+        .hamburger {
+            display: block;
+        }
 
-                    /* Mobile styles */
-                    @media (max-width: 768px) {
-                        .hamburger {
-                            display: block; /* Show hamburger on mobile */
-                        }
+        nav .menuitem {
+            display: none !important; 
+        }
+    }
 
-                        nav .menuitem {
-                            display: none !important; /* Force hide menuitem on mobile */
-                        }
-                    }
+    @media (min-width: 769px) {
+        .hamburger {
+            display: none; 
+        }
 
-                    /* Desktop styles */
-                    @media (min-width: 769px) {
-                        .hamburger {
-                            display: none; /* Hide hamburger on desktop */
-                        }
+        nav .menuitem {
+            display: flex !important; 
+        }
+    }
+    @media (max-width: 768px) {
+        .container {
+            --width__screen: none;
+        }
+        header nav{
+            padding:none;
+        }
+    }
+        </style>
+</head>
 
-                        nav .menuitem {
-                            display: flex !important; /* Force show menuitem on desktop */
-                        }
-                    }
-            </style>
-    </head>
-
-    <body>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css" />
-            <div id="main" data-locomotive-scroll>
-                    <header>
+<body>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css" />
+        <div id="main" data-locomotive-scroll>
+                <header>
                         <nav>
                             <img src="/assets/yaa.png" alt="nav logo" class="nav-logo" />
                             <div class="hamburger" id="hamburger">&#9776;</div>
                             <div class="menuitem">
                                 <a href="">Home</a>
                                 <a href="/works">Works</a>
-                                <a href="mailto:zyxstudio@proton.me">Contact</a>
+                                <a href="/contact/">Contact</a>
                                 <a href="https://instagram.com/y0onus/?igshid=ZDdkNTZiNTM%3D">Instagram</a>
                             </div>
                         </nav>
                     </header>
-
+    
                     <!-- Overlay for Mobile Nav -->
                     <div class="overlay" id="overlay">
                         <div class="close-btn" id="close-btn">&times;</div>
@@ -795,14 +810,14 @@
                         <div class="overlay-links">
                             <a href="">Home</a>
                             <a href="/works">Works</a>
-                            <a href="mailto:zyxstudio@proton.me">Contact</a>
+                            <a href="/contact/">Contact</a>
                             <a href="https://instagram.com/y0onus/?igshid=ZDdkNTZiNTM%3D">Instagram</a>
                         </div>
                     </div>
         <main class="container">
             <section class="section_3 py-8">
                 <div class="works-grid">
-                    <div class="bento-box first"">
+                    <div class="bento-box first">
                         <span class="work-text first">WORKS</span>
                         <span class="bottom-text first">Explore my work—where graphics, photography, and web design come together to create visually compelling and impactful designs. Each project is crafted with precision, creativity, and attention to detail.</span>
                     </div>
@@ -810,21 +825,21 @@
                         <span class="work-text">Graphics</span>
                         <span class="bottom-text">Futboalha</span>
                     </div>
-                    <div class="bento-box" style="background-image: url('/lossyassets/bannnner.png');" data-src="https://95d95eaa-1231-4695-b86f-578a96817c46-00-4qooxy67v5jv.worf.replit.dev/bannnner.png">
-                        <span class="work-text">Work 3</span>
-                        <span class="bottom-text">Description for Work 3</span>
+                    <div class="bento-box" style="background-image: url('https://github.com/JeffIsEpik/Jeffisepik.github.io/blob/main/lossyassets/Webter2.png?raw=true');" data-src="https://github.com/JeffIsEpik/Jeffisepik.github.io/blob/main/assets/Webter2.png?raw=true">
+                        <span class="work-text">Project</span>
+                        <span class="bottom-text">Web Terraria</span>
                     </div>
-                    <div class="bento-box" style="background-image: url('/lossyassets/bannnner.png');" data-src="https://95d95eaa-1231-4695-b86f-578a96817c46-00-4qooxy67v5jv.worf.replit.dev/bannnner.png">
-                        <span class="work-text">Work 4</span>
-                        <span class="bottom-text">Description for Work 4</span>
+                    <div class="bento-box" style="background-image: url('https://github.com/JeffIsEpik/Jeffisepik.github.io/blob/main/lossyassets/Weatherapp5.png?raw=true');" data-src="https://github.com/JeffIsEpik/Jeffisepik.github.io/blob/main/assets/Weatherapp5.png?raw=true">
+                        <span class="work-text">Project</span>
+                        <span class="bottom-text">Weather App</span>
                     </div>
-                    <div class="bento-box" style="background-image: url('/lossyassets/bannnner.png');" data-src="https://95d95eaa-1231-4695-b86f-578a96817c46-00-4qooxy67v5jv.worf.replit.dev/bannnner.png">
-                        <span class="work-text">Work 5</span>
-                        <span class="bottom-text">Description for Work 5</span>
+                    <div class="bento-box" style="background-image: url('https://github.com/JeffIsEpik/Jeffisepik.github.io/blob/main/lossyassets/photo3.jpg?raw=true');" data-src="https://github.com/JeffIsEpik/Jeffisepik.github.io/blob/main/assets/photo3.jpg?raw=true">
+                        <span class="work-text">Photography</span>
+                        <span class="bottom-text"></span>
                     </div>
-                    <div class="bento-box" style="background-image: url('/lossyassets/bannnner.png');" data-src="https://95d95eaa-1231-4695-b86f-578a96817c46-00-4qooxy67v5jv.worf.replit.dev/bannnner.png">
-                        <span class="work-text">Work 6</span>
-                        <span class="bottom-text">Description for Work 6</span>
+                    <div class="bento-box" style="background-image: url('https://github.com/JeffIsEpik/Jeffisepik.github.io/blob/main/lossyassets/TT.png?raw=true');" data-src="https://github.com/JeffIsEpik/Jeffisepik.github.io/blob/main/assets/TT.png?raw=true">
+                        <span class="work-text">Graphics</span>
+                        <span class="bottom-text">Cars</span>
                     </div>
             </section>
         </main>
@@ -834,7 +849,7 @@
             <section>
                 <div class="footer--top">
                     <h3>LET'S CREATE AN EXPERIENCE AS REMARKABLE AS YOUR IDEAS!</h3>
-                    <button class="btn-circle"><a href="mailto:zyxstudio@proton.me" class="a">Get in Touch</a></button>
+                    <button class="btn-circle"><a href="/contact/" class="a">Get in Touch</a></button>
                 </div>
                 <div class="line"></div>
                 <div class="footer--bottom py-2">
@@ -899,7 +914,6 @@
                 });
         </script>
              <script>
-                    // Toggle Mobile Nav
                     const hamburger = document.getElementById("hamburger");
                     const overlay = document.getElementById("overlay");
                     const closeBtn = document.getElementById("close-btn");
@@ -912,7 +926,6 @@
                         overlay.classList.remove("active");
                     });
 
-                    // Close overlay when clicking outside
                     overlay.addEventListener("click", (e) => {
                         if (e.target === overlay) {
                             overlay.classList.remove("active");
